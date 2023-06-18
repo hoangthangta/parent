@@ -86,7 +86,11 @@ def _mention_probability(table_entry, sentence, smoothing=0.0):
     else:
         value = table_entry[0] + table_entry[2]
     overlap = _len_lcs(value, sentence)
-    return float(overlap + smoothing) / float(len(value) + smoothing)
+
+    try:
+        return float(overlap + smoothing) / float(len(value) + smoothing)
+    except:
+        return 0
 
 
 def _len_lcs(x, y):
